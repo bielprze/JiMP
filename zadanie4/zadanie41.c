@@ -1,3 +1,9 @@
+/*
+ ============================================================================
+ Name        : Zadanie3.c
+ Author      : Przemysław Bielecki
+ ============================================================================
+ */
 //Aby skompilować proszę użyć następującej komendy: gcc zadanie41.c  -Wall -pedantic -Wextra -Werror -lm
 
 #include <stdio.h>
