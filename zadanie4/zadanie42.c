@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-//x - szukana, t=tablica liczb
+
 int sprawdzenie_liczby(int a)
 {
 	if(a<1 || a>10)
