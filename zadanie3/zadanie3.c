@@ -1,10 +1,7 @@
 /*
  ============================================================================
- Name        : Zadanie3_C.c
- Author      : Przemys³aw Bielecki
- Version     :
- Copyright   : 
- Description : Hello World in C, Ansi-style
+ Name        : Zadanie3.c
+ Author      : Przemysław Bielecki
  ============================================================================
  */
 
