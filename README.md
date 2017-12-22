@@ -1,2 +1,2 @@
 # JiMP
-Zadania dome z przedmiotu języki i metody programowania
+Zadania domowe z przedmiotu języki i metody programowania
