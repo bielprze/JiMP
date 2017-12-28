@@ -13,14 +13,14 @@ int sprawdzenie_liczby(int a)
 	if(a<1 || a>10)
 	{
 		printf("Podano liczbę z poza przedziału\n");
-		return 0;	
+		return 1;	
 	}
-	return 1;
+	return 0;
 }
 
-void wypelnianie_tablicy(int tab[])
+void wypelnianie_tablicy(int tab[], int tab_size)
 {
-	for(int i=0; i<10; i=i+1)
+	for(int i=0; i<tab_size; i=i+1)
 	{
 		tab[i]=i+1;
 	}
@@ -49,9 +49,9 @@ int main() {
 		printf("Podaj liczbę z przedziału [1, 10]\n");
 		scanf("%d", &a);
 		warunek=sprawdzenie_liczby(a);
-	}while(warunek!=1);	
+	}while(warunek!=0);	
 	
-	wypelnianie_tablicy(tab);
+	wypelnianie_tablicy(tab, 10);
 	
 
 	printf("szukana liczba to %d, a znaleziona to %d\n", a,szukanie_liczby(a, tab, 0, 9)+1); //drugi argument to liczba w połowie przedziału. Ponieważ 5 i 6 są w połowie możemy wybrać jedną z tcyh dwóch.
