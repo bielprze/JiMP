@@ -8,9 +8,9 @@
 
 #include <stdio.h>
 
-int porownanie (int godz1[], int godz2[])
+int porownanie (int godz1[], int godz2[], int tab_size)
 {
-	for(int i=0; i<4; i++)
+	for(int i=0; i<tab_size; i++)
 	{
 		if(godz1[i]>godz2[i]) return -1;
 		else if(godz1[i]<godz2[i]) return 1;		
@@ -18,9 +18,9 @@ int porownanie (int godz1[], int godz2[])
 	return 0;
 }
 
-void wypelnianie(int tab[])
+void wypelnianie(int tab[], int tab_size)
 {
-	for(int i=0; i<4; i++)
+	for(int i=0; i<tab_size; i++)
 	{
 		scanf("%d", &tab[i]);
 	}
