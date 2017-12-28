@@ -17,15 +17,15 @@ char *inputString(FILE* fp, size_t size){
     napis = realloc(NULL, sizeof(char)*size);
     if(!napis)return napis;
     while(EOF!=(ch=fgetc(fp)) && ch != '\n'){
-        str[dlugosc++]=ch;
+        napis[dlugosc++]=ch;
         if(dlugosc==size){
-            napis = realloc(napisc, sizeof(char)*(size+=16));
-            if(!str) return napis;
+            napis = realloc(napis, sizeof(char)*(size+=16));
+            if(!napis) return napis;
         }
     }
-    str[len++]='\0';
+    napis[dlugosc++]='\0';
 
-    return realloc(str, sizeof(char)*len);
+    return realloc(napis, sizeof(char)*dlugosc);
 }
 
 
