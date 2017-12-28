@@ -8,31 +8,33 @@
 #include <stdlib.h>
 #include <time.h>
 
-void wypelnianie(int tab[3][3])
+void wypelnianie(int tab[3][3], int tab_size)
 {
-	srand(time(NULL));
-	for(int i=0; i<3; i++)
+	for(int i=0; i<tab_size; i++)
 	{
-		for(int j=0; j<3; j++)
+		for(int j=0; j<tab_size; j++)
 		{	
 			tab[i][j]=rand()%11;
-			printf("%d ", tab[i][j]);
-			
 		}
-	printf("\n");
 	}
 }
 
+void wyswietlanie(int tab[3][3], int tab_size)
+{
+	for(int i=0; i<tab_size; i++)
+	{
+		for(int j=0; j<tab_size; j++)
+		{	
+			printf("%d ", tab[i][j]);
+		}
+	printf("\n");
+	}	
+}
 int wyznacznik(int tab[3][3])
 {
 	int det;	
 	
-	det=(tab[0][0]*tab[1][1]*tab[2][2])
-	   +(tab[1][0]*tab[2][1]*tab[0][2])
-           +(tab[2][0]*tab[0][1]*tab[1][2])
-	   -(tab[2][0]*tab[1][1]*tab[0][2])
-           -(tab[0][0]*tab[2][1]*tab[1][2])
-	   -(tab[1][0]*tab[0][1]*tab[2][2]);
+	det=(tab[0][0]*tab[1][1]*tab[2][2])+(tab[1][0]*tab[2][1]*tab[0][2])+(tab[2][0]*tab[0][1]*tab[1][2])-(tab[2][0]*tab[1][1]*tab[0][2])-(tab[0][0]*tab[2][1]*tab[1][2])-(tab[1][0]*tab[0][1]*tab[2][2]);
 
 	return det;
 }
