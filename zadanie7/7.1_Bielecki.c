@@ -1,7 +1,14 @@
+/*
+ ============================================================================
+ Name        : Zadanie 7.1
+ Author      : Przemysław Bielecki
+ ============================================================================
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
 
 void losowanie_tablicy(double tab[10]){
 	
@@ -55,8 +62,6 @@ int main() {
 	double *wsk_a, *wsk_b;
 	
 	losowanie_tablicy(tab);
-
-	//wyswietlanie(tab);
 
 	wsk_a=tab;
 	wsk_b=ost_el(tab, 10);
