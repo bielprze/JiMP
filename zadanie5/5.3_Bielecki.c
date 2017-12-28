@@ -9,8 +9,8 @@
 
 int main() {
 	int tab[2][2][2];
-	wypelnianie(tab);
-	mnozenie_macierzy(tab);
+	wypelnianie(tab, 2);
+	mnozenie_macierzy(tab, 2);
 	
 	return 0;
 }
