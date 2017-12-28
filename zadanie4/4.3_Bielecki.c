@@ -8,46 +8,46 @@
 #include <stdlib.h>
 #include <time.h>
 
-void wypelnianie_tablicy(int tab[], int waga)
+void wypelnianie_tablicy(int tab[], int waga, int tab_size)
 {
-	for(int i=0; i<9; i=i+1)
+	for(int i=0; i<tab_size; i=i+1)
 	{
 		tab[i]=waga;
 	}
 }
 
-void podzial_tablicy(int tab[], int counter, int tab_podzielona[])
+void podzial_tablicy(int tab[], int counter, int tab_podzielona[], int tab_size)
 {
 	switch (counter)
 	{
 	case 1:
-	for(int i=0; i<3; i=i+1)
+	for(int i=0; i<tab_size; i=i+1)
 	{
 		tab_podzielona[i]=tab[i];
 	}
 	break;
 	case 2:
-	for(int i=0; i<3; i=i+1)
+	for(int i=0; i<tab_size; i=i+1)
 	{
-		tab_podzielona[i]=tab[i+3];
+		tab_podzielona[i]=tab[i+tab_size];
 	}
 	break;
 	case 3:
-	for(int i=0; i<3; i=i+1)
+	for(int i=0; i<tab_size; i=i+1)
 	{
-		tab_podzielona[i]=tab[i+6];
+		tab_podzielona[i]=tab[i+tab_size+tab_size];
 	}
 	break;
 	}
 	
 }
 
-int wazenie_grup(int tab1[], int tab2[])
+int wazenie_grup(int tab1[], int tab2[], int tab_size)
 {
 	int suma1=0;
 	int suma2=0;
 	int porownanie;	
-	for(int i=0; i<3; i=i+1)
+	for(int i=0; i<tab_size; i=i+1)
 	{
 		suma1=suma1+tab1[i];
 		suma2=suma2+tab2[i];
@@ -115,12 +115,12 @@ int wazenie_kulek(int waga1, int waga2, int counter)
 
 }
 
-void sprawdzenie(int tab[])
+void sprawdzenie(int tab[], int tab_size)
 {
 	printf("\n");
 	printf("Poniżej (w celu sprawdzenia poprawności działania programu) znajduje się lista wag kolejnych kulek: \n");
 
-	for(int i=0; i<9; i=i+1)
+	for(int i=0; i<tab_size; i=i+1)
 	{
 		printf("kulka o numerze: %d waży %d \n", i+1, tab[i]);
 	}	
@@ -136,14 +136,14 @@ int main()
 	srand(time(NULL));
 	random=(rand()%9);
 	
-	wypelnianie_tablicy(tab, 1);
+	wypelnianie_tablicy(tab, 1, 9);
 	tab[random]=2;
 	
-	podzial_tablicy(tab, 1, tab1);
-	podzial_tablicy(tab, 2, tab2);	
-	podzial_tablicy(tab, 3, tab3);
+	podzial_tablicy(tab, 1, tab1, 3);
+	podzial_tablicy(tab, 2, tab2, 3);	
+	podzial_tablicy(tab, 3, tab3, 3);
 
-	porownanie=wazenie_grup(tab1, tab2);
+	porownanie=wazenie_grup(tab1, tab2, 3);
 	if(porownanie==1)
 	{
 		wazenie_kulek(tab3[0], tab3[1], 3);
@@ -156,7 +156,7 @@ int main()
 	{
 		wazenie_kulek(tab1[0], tab1[1], 1);
 	}
-	sprawdzenie(tab);
+	sprawdzenie(tab, 9);
 	
-return 0;
+	return 0;
 }
