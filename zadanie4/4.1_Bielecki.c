@@ -4,7 +4,7 @@
  Author      : Przemysław Bielecki
  ============================================================================
  */
-//Aby skompilować proszę użyć następującej komendy: gcc zadanie41.c  -Wall -pedantic -Wextra -Werror -lm
+//Aby skompilować proszę użyć następującej komendy: gcc 4.1_Bielecki.c  -Wall -pedantic -Wextra -Werror -lm
 
 #include <stdio.h>
 #include <math.h>
@@ -32,20 +32,25 @@ struct pierwiastki licz_pierwiastki(double delta,double a, double b)
 }
 
 int main()
-{
+{	
+	int flag=1;
 	double a, b, c, delta2;
-	printf("Podaj wspolczynniki rownania\n");
-	scanf("%lf", &a);
-	scanf("%lf", &b);
-	scanf("%lf", &c);	
-
+	while(flag)
+	{
+		printf("Podaj wspolczynniki rownania\n");
+		scanf("%lf", &a);
+		scanf("%lf", &b);
+		scanf("%lf", &c);	
+		if(a==0) printf("Rownanie nie jest kwadratowe\n");
+		else flag=0;		
+	}
 	delta2=delta(a, b, c);
-	struct pierwiastki x;
-	x=licz_pierwiastki(delta2, a, b);
-
-	printf("pierwiastki to: %lf, %lf\n", x.pierwiastek1, x.pierwiastek2);
-
-
-
-return 0;
+	if(delta<0) printf("Brak pierwiastkow rzeczywistych\n");
+	else
+	{	
+		struct pierwiastki x;
+		x=licz_pierwiastki(delta2, a, b);
+		printf("pierwiastki to: %lf, %lf\n", x.pierwiastek1, x.pierwiastek2);
+	}	
+	return 0;
 }
