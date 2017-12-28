@@ -9,40 +9,40 @@
 #include <stdlib.h>
 #include <time.h>
 
-void losowanie_tablicy(int tab[10]){
+void losowanie_tablicy(int tab[], int tab_size){
 	
 	srand(time(NULL));	
-	for(int i=0; i<10; i++)
+	for(int i=0; i<tab_size; i++)
 	{
 		tab[i]=rand()%100;
 	}
 }
 
-void wyswietlanie(int tab[10]) {
+void wyswietlanie(int tab[], int tab_size) {
 
-	for(int i=0; i<10; i++)
+	for(int i=0; i<tab_size; i++)
 	{
 		printf("%d ", tab[i]);
 	}
 	printf("\n");
 }
 
-double srednia(int tab[10]) {
+double srednia(int tab[], int tab_size) {
 	
 	int suma=0;
-	for(int i=0; i<10; i++)
+	for(int i=0; i<tab_size; i++)
 	{
 		suma=suma+tab[i];
 	}
-	return suma/10;
+	return suma/tab_size;
 }	
 
-void bubblesort(int tab[10]){
+void bubblesort(int tab[], int tab_size){
 
 	int temp;
-	for (int c = 0 ; c < ( 10 - 1 ); c++)
+	for (int c=0; c<(tab_size-1); c++)
  	{
-		for (int d = 0 ; d < 10 - c - 1; d++)
+		for (int d=0 ; d<tab_size-c-1; d++)
 		{
 			if (tab[d] > tab[d+1]) 
 			{
@@ -55,21 +55,20 @@ void bubblesort(int tab[10]){
 
 }
 
-double mediana(int tab[10]){
+double mediana(int tab[], int tab_size){
 	
-	bubblesort(tab);
+	bubblesort(tab, tab_size);
 	return (tab[4]+tab[5])/2;
 }
-void maks_i_min(int tab[10]){
-	bubblesort(tab);
+
+void maks_i_min(int tab[], int tab_size){
+	bubblesort(tab, tab_size);
 	printf("Wartość maks to: %d , wartość min to: %d\n", tab[9], tab[0]);
 }
 
 int main(){
 
-	int tab[10];
-	
-	
+	int tab[10];	
 	int warunek1=1;
 	int warunek2;
 	int warunek3=0;
@@ -81,23 +80,23 @@ int main(){
 	
 		switch(warunek2){
 		case 1: 
-			losowanie_tablicy(tab);
+			losowanie_tablicy(tab, 10);
 			warunek3=1;
 			break;
 		case 2:
-			if(warunek3==1) wyswietlanie(tab);
+			if(warunek3==1) wyswietlanie(tab, 10);
 			else printf("Nie wypełnino tablicy!\n");
 			break;
 		case 3: 
-			if(warunek3==1) srednia(tab);
+			if(warunek3==1) srednia(tab, 10);
 			else printf("Nie wypełnino tablicy!\n");
 			break;
 		case 4:
-			if(warunek3==1) mediana(tab);
+			if(warunek3==1) mediana(tab, 10);
 			else printf("Nie wypełnino tablicy!\n");
 			break;
 		case 5: 
-			if(warunek3==1) maks_i_min(tab);
+			if(warunek3==1) maks_i_min(tab, 10);
 			else printf("Nie wypełnino tablicy!\n");
 			break;
 		case 6:
@@ -105,8 +104,6 @@ int main(){
 			break;
 		}
 	}
-		
-		
 
 	return 0;
 }
