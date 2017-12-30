@@ -9,8 +9,11 @@
 
 int main() {
 	int tab[2][2][2];
-	wypelnianie(tab, 2);
-	mnozenie_macierzy(tab, 2);
+	int tab_size=sizeof(tab)/sizeof(tab[0]);
+	printf("%d \n", tab_size);
+
+	wypelnianie(tab, tab_size);
+	mnozenie_macierzy(tab, tab_size);
 	
 	return 0;
 }

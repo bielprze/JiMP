@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-void wypelnianie(int tab[3][3], int tab_size)
+void wypelnianie(int tab_size, int tab[tab_size][tab_size])
 {
 	for(int i=0; i<tab_size; i++)
 	{
@@ -19,12 +19,12 @@ void wypelnianie(int tab[3][3], int tab_size)
 	}
 }
 
-void wyswietlanie(int tab[3][3], int tab_size)
+void wyswietlanie(int tab_size, int tab[tab_size][tab_size])
 {
 	for(int i=0; i<tab_size; i++)
 	{
 		for(int j=0; j<tab_size; j++)
-		{	
+		{
 			printf("%d ", tab[i][j]);
 		}
 	printf("\n");

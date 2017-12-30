@@ -72,6 +72,7 @@ int main(){
 	int warunek1=1;
 	int warunek2;
 	int warunek3=0;
+	int tab_size=sizeof(tab)/sizeof(tab[0]);
 
 	while(warunek1 == 1)
 	{	
@@ -80,23 +81,23 @@ int main(){
 	
 		switch(warunek2){
 		case 1: 
-			losowanie_tablicy(tab, 10);
+			losowanie_tablicy(tab, tab_size);
 			warunek3=1;
 			break;
 		case 2:
-			if(warunek3==1) wyswietlanie(tab, 10);
+			if(warunek3==1) wyswietlanie(tab, tab_size);
 			else printf("Nie wypełnino tablicy!\n");
 			break;
 		case 3: 
-			if(warunek3==1) srednia(tab, 10);
+			if(warunek3==1) srednia(tab, tab_size);
 			else printf("Nie wypełnino tablicy!\n");
 			break;
 		case 4:
-			if(warunek3==1) mediana(tab, 10);
+			if(warunek3==1) mediana(tab, tab_size);
 			else printf("Nie wypełnino tablicy!\n");
 			break;
 		case 5: 
-			if(warunek3==1) maks_i_min(tab, 10);
+			if(warunek3==1) maks_i_min(tab, tab_size);
 			else printf("Nie wypełnino tablicy!\n");
 			break;
 		case 6:

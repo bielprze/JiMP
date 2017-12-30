@@ -10,6 +10,15 @@
 #include <string.h>
 #include <stdlib.h>
 
+int czyPrzestepny(int rok)
+{
+    if ( (((rok%4) == 0) && rok % 100 != 0) || rok % 400 == 0)
+        return 1;
+    else
+        return 0;
+}
+
+
 void wyswietlanie(int daycheck, int ilosc_dni)
 {
 	switch(daycheck)
@@ -89,26 +98,43 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 	printf("\n");
 }
 
-int sprawdz_ilosc_dni(char month[])
+int sprawdz_ilosc_dni(char month[], int rok)
 {
 	int ilosc_dni;
 	
-	if(month[0]=='M' && month[1]=='a' && month[2]=='r')
-	 ilosc_dni=31;
-	else if(month[0]=='M' && month[1]=='a' && month[2]=='y') 
-	 ilosc_dni=31;
-	else if(month[0]=='J' && month[1]=='u') 
-	 ilosc_dni=31;
-	else if(month[0]=='A') 
-	 ilosc_dni=31;
-	else if(month[0]=='O') 
-	 ilosc_dni=31;
-	else if(month[0]=='D') 
-	 ilosc_dni=31;
-	else if(month[0]=='J' && month[1]=='a') 
-	 ilosc_dni=31;
-	else
-	 ilosc_dni=30;
+	switch(month[0])
+	{
+		case 'M':
+			ilosc_dni=31;
+		break;
+		case 'J':
+			if(month[30=='n'])
+				ilosc_dni=30;
+			else
+				ilosc_dni=31;
+		break;
+		case 'A':
+			if(month[1]=='u')
+				ilosc_dni=31;
+			else
+				ilosc_dni=30;
+		break;
+		case 'O':
+			ilosc_dni=31;
+		break;
+		case 'D':
+			ilosc_dni=31;
+		break;
+		case 'F':
+			if(czyPrzestepny(rok))
+				ilosc_dni=29;
+			else
+				ilosc_dni=28;
+		break;
+		default:
+			ilosc_dni=30;
+			break;
+	}
 
 	return ilosc_dni;
 }
@@ -130,31 +156,30 @@ int sprawdz_dzien(char day[])
 
 int przesun_na_pierwszy_tydzien(int dday)
 {
-	int dzien;
-	int flag=1;
-	while(flag)
+	while(1)
 	{
 		if(dday>7) dday=dday-7;
-		else flag=0;
+		else 
+			break;
 	}
-	return dzien;
+	return dday;
 }
 int sprawdz_dzien_tygodnia(int daycheck, int countcheck)
 {
-	int flag=1;
-	while(flag)
+	while(1)
 	{
 		countcheck=countcheck-1;
 		daycheck=daycheck-1;
-		if(countcheck==1) flag=0;
+		if(countcheck==1) 
+			break;
 	}
 	return daycheck;
 }
 
 int modulo(int a, int b)
 {
-    int r = a % b;
-    return r < 0 ? r + b : r;
+    int r=a%b;
+    return r<0?r+b:r;
 }
 
 int main() {
@@ -165,28 +190,27 @@ int main() {
 	strcpy(tab,  ctime(&mytime));
 	printf("%s\n", ctime(&mytime));
 
-	char month[3], day[3], day_number1[1], day_number2[1];
+	char month[3], day[3], day_number1[1], day_number2[1], year[4];
 	int ilosc_dni;
 	int numer_dnia1;
 	int dzien;
 	int dday;
-
-	day[0]=tab[0];
-	day[1]=tab[1];
-	day[2]=tab[2];
+	int year_int;
+	//21 22 23 24
 
 	
-	month[0]=tab[4];
-	month[1]=tab[5];
-	month[2]=tab[6];
-
+	strncpy(year, tab+20, 4);
+	strncpy(day, tab, 3);
+	strncpy(month, tab+4, 3);
+	year_int=atoi(year);
+	
 	day_number1[0]=tab[8];
 	day_number2[0]=tab[9];
 	day_number2[0]=day_number2[0];
 
 	numer_dnia1=atoi(day_number1);
 	
-	ilosc_dni=sprawdz_ilosc_dni(month);
+	ilosc_dni=sprawdz_ilosc_dni(month, year_int);
 	dzien=sprawdz_dzien(day);
 
 	dday=numer_dnia1;

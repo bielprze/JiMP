@@ -32,14 +32,12 @@ void sortowanie_wskaznikow(int* tab_wsk[], int tab_size){
                         }
         	}
         	if (flag == 0)
-		{
            		 break;
-       		}
-	}
+       	}
 	
-    for(int i = 0; i < tab_size; ++i){
-        printf("%d ", *tab_wsk[i]);
-    }
+	for(int i = 0; i < tab_size; ++i)
+   	     printf("%d ", *tab_wsk[i]);
+    
 	printf("\n");
 }
 
@@ -61,17 +59,18 @@ void wyswietlanie(int tab_num[], int tab_size)
 }
 
 
-int main(void){
-
+int main(void)
+{
 	srand(time(NULL));
 
 	int tab_num[10];
 	int *tab_wsk[10];
-
-	wypelnianie(tab_num, 10);	
-	wsk_do_num(tab_num, tab_wsk, 10);
-	sortowanie_wskaznikow(tab_wsk, 10);
-	wyswietlanie(tab_num, 10);
+	int tab_size=sizeof(tab_num)/sizeof(tab_num[0]);	
+	
+	wypelnianie(tab_num, tab_size);	
+	wsk_do_num(tab_num, tab_wsk, tab_size);
+	sortowanie_wskaznikow(tab_wsk, tab_size);
+	wyswietlanie(tab_num, tab_size);
 
 	return 0;
 }

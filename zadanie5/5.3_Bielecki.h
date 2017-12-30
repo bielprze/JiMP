@@ -45,8 +45,8 @@ void podzial(int tab[2][2][2], int tab1[2][2], int tab2[2][2], int tab_size)
 			tab2[i][j]=tab[1][i][j];
 		}
 
-	wyswietlanie(tab1, 2);
-	wyswietlanie(tab2, 2);
+	wyswietlanie(tab1, tab_size);
+	wyswietlanie(tab2, tab_size);
 }
 
 
@@ -72,12 +72,12 @@ void mnozenie_macierzy(int tab[2][2][2], int tab_size)
 	wynik[i][j]=0;
 	
 
-	podzial(tab, tab1, tab2, 2);
+	podzial(tab, tab1, tab2, tab_size);
 	for(int i=0; i<2; i++)
 		for(int j=0; j<2; j++)
 			for(int k=0; k<2; k++)
 				wynik[i][j]+=tab1[i][k]*tab2[k][j];
 
-	wyswietlanie(wynik, 2);	
+	wyswietlanie(wynik, tab_size);	
 }
 

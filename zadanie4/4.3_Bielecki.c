@@ -130,23 +130,24 @@ int main()
 {
 	int random;
 	int tab[9];
-	int tab1[3], tab2[3], tab3[3];
 	int porownanie;
+	int tab_size=sizeof(tab)/sizeof(tab[0]);
+	int tab1[tab_size/3], tab2[tab_size/3], tab3[tab_size/3];
 
 	srand(time(NULL));
 	random=(rand()%9);
 	
-	wypelnianie_tablicy(tab, 1, 9);
+	wypelnianie_tablicy(tab, 1, tab_size);
 	tab[random]=2;
 	
-	podzial_tablicy(tab, 1, tab1, 3);
-	podzial_tablicy(tab, 2, tab2, 3);	
-	podzial_tablicy(tab, 3, tab3, 3);
+	podzial_tablicy(tab, 1, tab1, tab_size/3);
+	podzial_tablicy(tab, 2, tab2, tab_size/3);	
+	podzial_tablicy(tab, 3, tab3, tab_size/3);
 
-	porownanie=wazenie_grup(tab1, tab2, 3);
+	porownanie=wazenie_grup(tab1, tab2, tab_size/3);
 	if(porownanie==1)
 	{
-		wazenie_kulek(tab3[0], tab3[1], 3);
+		wazenie_kulek(tab3[0], tab3[1], tab_size/3);
 	}
 	else if(porownanie==2)
 	{
@@ -156,7 +157,7 @@ int main()
 	{
 		wazenie_kulek(tab1[0], tab1[1], 1);
 	}
-	sprawdzenie(tab, 9);
+	sprawdzenie(tab, tab_size);
 	
 	return 0;
 }

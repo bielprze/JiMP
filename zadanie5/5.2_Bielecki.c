@@ -11,8 +11,9 @@
 int main(){
 	srand(time(NULL));
 	int tab[3][3];
-	wypelnianie(tab, 3);
-	wyswietlanie(tab, 3);
+	int tab_size=sizeof(tab)/sizeof(tab[0]);
+	wypelnianie(tab_size, tab);
+	wyswietlanie(tab_size, tab);
 	printf("wyznacznik macierzy to %d \n", wyznacznik(tab));
 
 	return 0;

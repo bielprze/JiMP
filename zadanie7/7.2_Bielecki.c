@@ -11,28 +11,32 @@ Author      : Przemysław Bielecki
 #include <stdlib.h>
 
 char *inputString(FILE* fp, size_t size){
-    char *napis;
-    int ch;
-    size_t dlugosc = 0;
-    napis = realloc(NULL, sizeof(char)*size);
-    if(!napis)return napis;
-    while(EOF!=(ch=fgetc(fp)) && ch != '\n'){
-        napis[dlugosc++]=ch;
-        if(dlugosc==size){
-            napis = realloc(napis, sizeof(char)*(size+=16));
-            if(!napis) return napis;
-        }
-    }
-    napis[dlugosc++]='\0';
+	char *napis;
+	int ch;
+	size_t dlugosc = 0;
 
-    return realloc(napis, sizeof(char)*dlugosc);
+	napis = realloc(NULL, sizeof(char)*size);
+	if(!napis)
+		return napis;
+	while(EOF!=(ch=fgetc(fp)) && ch != '\n')
+	{
+        	napis[dlugosc++]=ch;
+        	if(dlugosc==size)
+		{
+			napis = realloc(napis, sizeof(char)*(size+=16));
+			if(!napis)
+				return napis;
+        	}
+	}
+	napis[dlugosc++]='\0';
+
+	return realloc(napis, sizeof(char)*dlugosc);
 }
 
 
 
 void print_and_scan(char* napis, int tab[])
 {
-
 	int dlugosc = strlen(napis);
 	int j=0;
 	for(int i = 0; i<dlugosc; i++)
@@ -44,11 +48,8 @@ void print_and_scan(char* napis, int tab[])
 			j++;
        		}
 		else
-		{
 			printf("%c",napis[i]);
-		}
 	}
-	
 	printf("\n");
 }
 
@@ -66,7 +67,8 @@ int sprawdz_ilosc_argumentow(char* napis)
 	return suma;
 }
 
-int main(void){
+int main(void)
+{
 
 	int suma;
 	char* napis;
