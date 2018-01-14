@@ -24,9 +24,7 @@ int sprawdzenie_liczby(int a)
 void wypelnianie_tablicy(int tab[], int tab_size)
 {
 	for(int i=0; i<tab_size; i=i+1)
-	{
 		tab[i]=i+1;
-	}
 }
 
 int szukanie_liczby(int x, int tab[], int begin, int end)
@@ -34,19 +32,17 @@ int szukanie_liczby(int x, int tab[], int begin, int end)
 	int s;
 	s=(begin+end)/2;
 	if(tab[s]>x) 
-	{
 		return szukanie_liczby(x, tab, begin, s-1);
-	}
+	
 	if(tab[s]<x)
-	{
 		return szukanie_liczby(x, tab, s+1, end);
-	}
+	
 	return s;
 }
 
 int main() {
 	int a, tab[10];
-	int tab_size=sizeof(tab)/sizeof(tab[0]);
+	const int tab_size=sizeof(tab)/sizeof(tab[0]);
 	
 	do
 	{	
@@ -57,7 +53,7 @@ int main() {
 	wypelnianie_tablicy(tab, tab_size);
 	
 
-	printf("szukana liczba to %d, a znaleziona to %d\n", a, szukanie_liczby(a, tab, ZAKRES_OD-1, ZAKRES_DO-1)+1); //drugi argument to liczba w połowie przedziału. Ponieważ 5 i 6 są w połowie możemy wybrać jedną z tcyh dwóch.
+	printf("szukana liczba to %d, a znaleziona to %d\n", a, szukanie_liczby(a, tab, ZAKRES_OD-1, ZAKRES_DO-1)+1); //drugi argument to liczba w połowie przedziału. Ponieważ 5 i 6 są w połowie możemy wybrać jedną z tych dwóch.
 
 	return 1;
 }

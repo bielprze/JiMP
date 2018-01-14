@@ -30,8 +30,6 @@ struct pierwiastki licz_pierwiastki(double a, double b, double delta)
 	return x;
 }
 
-
-
 int main()
 {	
 	double a, b, c, wartosc_delta;
@@ -41,18 +39,23 @@ int main()
 		scanf("%lf", &a);
 		scanf("%lf", &b);
 		scanf("%lf", &c);	
-		if(a==0) printf("Rownanie nie jest kwadratowe\n");
+		if(a==0) 
+			printf("Rownanie nie jest kwadratowe\n");
 		else break;		
 	}
 
 	wartosc_delta=licz_delta(a, b, c);
 
-	if(wartosc_delta<0) printf("Brak pierwiastkow rzeczywistych\n");
+	if(wartosc_delta<0)
+		printf("Brak pierwiastkow rzeczywistych\n");
 	else
 	{	
 		struct pierwiastki x;
 		x=licz_pierwiastki(wartosc_delta, a, b);
-		printf("pierwiastki to: %lf, %lf\n", x.pierwiastek1, x.pierwiastek2);
+		if(x.pierwiastek1==x.pierwiastek2)
+			printf("delta 0, jest jeden podwójny pierwiastek: %lf\n", x.pierwiastek1);
+		else
+			printf("pierwiastki to: %lf, %lf\n", x.pierwiastek1, x.pierwiastek2);
 	}	
 	return 0;
 }

@@ -27,10 +27,10 @@ void wyswietlanie(int tab_size, int tab[tab_size][tab_size])
 		{
 			printf("%d ", tab[i][j]);
 		}
-	printf("\n");
+		printf("\n");
 	}	
 }
-int wyznacznik(int tab[3][3])
+int wyznacznikMacierzy3Na3(int tab[3][3])
 {
 	int det;	
 	

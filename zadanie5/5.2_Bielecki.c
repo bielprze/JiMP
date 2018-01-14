@@ -11,10 +11,10 @@
 int main(){
 	srand(time(NULL));
 	int tab[3][3];
-	int tab_size=sizeof(tab)/sizeof(tab[0]);
+	const int tab_size=sizeof(tab)/sizeof(tab[0]);
 	wypelnianie(tab_size, tab);
 	wyswietlanie(tab_size, tab);
-	printf("wyznacznik macierzy to %d \n", wyznacznik(tab));
+	printf("wyznacznik macierzy to %d \n", wyznacznikMacierzy3Na3(tab));
 
 	return 0;
 }

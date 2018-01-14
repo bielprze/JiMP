@@ -13,53 +13,49 @@
 
 double pole_kwadrat(double a)
 {
-	double pole;
-	pole=a*a;
+	double pole=a*a;
 	return pole;
 }
 
 double pole_prostokat(double a, double b)
 {
-	double pole;
-	pole=a*b;
+	double pole=a*b;
 	return pole;
 }
 
 double pole_trojkat(double a, double h)
 {
-	double pole;
-	pole=0.5*a*h;
+	double pole=0.5*a*h;;
 	return pole;
 }
 
 double pole_kolo(double r)
 {
-	double pole;
-	pole=PI*r*r;
+	double pole=PI*r*r;
 	return pole;
 }
 
-double Celcius_to_Fahrenheit(double TempC)
+double celcius_to_fahrenheit(double TempC)
 {
 	double TempK=32+1.8*TempC;
 	return TempK;
 }
 
-double Fahrenheit_to_Celcius(double TempF)
+double fahrenheit_to_celcius(double TempF)
 {
 	double TempK=0.56*(TempF-32);
 	return TempK;
 }
 
-double Degrees_to_Radians(double Deg)
+double degrees_to_radians(double Deg)
 {
-	double ang=Deg*(3.1415/180);
+	double ang=Deg*(PI/180);
 	return ang;
 }
 
-double Radians_to_Degrees(double Rad)
+double radians_to_degrees(double Rad)
 {
-	double ang=Rad*(180/3.1415);
+	double ang=Rad*(180/PI);
 	return ang;
 }
 
@@ -68,11 +64,13 @@ double obwod_prostokat(double a, double b)
 	double obwod=2*a+2*b;
 	return obwod;
 }
+
 double obwod_trojkat(double a, double b, double c)
 {
 	double obwod=a+b+c;
 	return obwod;
 }
+
 double obwod_kolo(double promien)
 {
 	double obwod=2*promien*PI;
@@ -87,7 +85,7 @@ void wybor(int warunek)
 
 	while(warunek)
 	{
-		printf("Wybierz dzialanie:\n [1] - pole kwadratu\n [2] - pole prostokata\n [3] - pole trojkata\n [4] - pole kola\n [5] - przeliczanie stC/stF\n [6] - przeliczanie Deg/Rad\n [7] - obwod kwadratu\n [8] - obwod prostokata\n [9] - obwod trojkata\n [10] - obwod kola [11] - wyjscie\n");
+		printf("Wybierz dzialanie:\n [1] - pole kwadratu\n [2] - pole prostokata\n [3] - pole trojkata\n [4] - pole kola\n [5] - przeliczanie stC/stF\n [6] - przeliczanie Deg/Rad\n [7] - obwod kwadratu\n [8] - obwod prostokata\n [9] - obwod trojkata\n [10] - obwod kola\n [11] - wyjscie\n");
 		scanf("%d", &war);
 		switch(war)
 		{
@@ -110,7 +108,8 @@ void wybor(int warunek)
 					printf("podaj dlugosc bokow\n");
 					scanf("%lf", &a);
 					scanf("%lf", &b);
-					if(a<0 || b<0) printf("Podaj dodatnią długość boku\n");
+					if(a<0 || b<0)
+						printf("Podaj dodatnią długość boku\n");
 					else 
 					{
 						printf("pole wynosi: %lf\n", pole_prostokat(a,b));
@@ -124,7 +123,8 @@ void wybor(int warunek)
 					printf("podaj dlugosc podstawy i wysokosc\n");
 					scanf("%lf", &a);
 					scanf("%lf", &b);
-					if(a<0 || b<0) printf("Podaj dodatnią długość boku i wysokości\n");
+					if(a<0 || b<0) 
+						printf("Podaj dodatnią długość boku i wysokości\n");
 					else
 					{
 						printf("pole wynosi: %lf\n", pole_trojkat(a,b));
@@ -148,21 +148,16 @@ void wybor(int warunek)
 				break;
 			case 5:
 				printf("Co przeliczyc?\n [1] - Celcius -> Fahrenheit\n [2] - Fahrenheit -> Celcius\n");
-				
 				scanf("%d", &war2);
+
 				if(war2==1 || war2==2)
 				{
 					printf("podaj temperature\n");
 					scanf("%lf", &a);
 					if(war2==1)
-					{
-						printf("Temperatura w stopniach Fahrenheita wynosi: %lf\n", Celcius_to_Fahrenheit(a));
-					}
+						printf("Temperatura w stopniach Fahrenheita wynosi: %lf\n", celcius_to_fahrenheit(a));
 					if(war2==2)
-					{
-						printf("Temperatura w stopniach Celcjusza wynosi: %lf\n", Fahrenheit_to_Celcius(a));		
-					}
-						
+						printf("Temperatura w stopniach Celcjusza wynosi: %lf\n", fahrenheit_to_celcius(a));			
 				}
 				else 
 				{
@@ -172,8 +167,8 @@ void wybor(int warunek)
 				break;
 			case 6:
 				printf("Co przeliczyc?\n [1] - Deg -> Rad\n [2] - Rad -> Deg\n");
-					
 				scanf("%d", &war2);
+
 				if(war2==1 || war2==2)
 				{
 					printf("podaj miare kata\n");
@@ -181,10 +176,10 @@ void wybor(int warunek)
 					switch(war2)
 					{
 						case 1:
-							printf("Kat w radianach wynosi: %lf\n",Degrees_to_Radians(a));
+							printf("Kat w radianach wynosi: %lf\n",degrees_to_radians(a));
 						break;
 						case 2:
-						printf("Kat w stopniach wynosi: %lf\n",Radians_to_Degrees(a));
+							printf("Kat w stopniach wynosi: %lf\n",radians_to_degrees(a));
 						break;
 					}
 				}
@@ -207,7 +202,6 @@ void wybor(int warunek)
 					else 
 						printf("Podaj dodatnią długość boku\n");
 				}
-		
 				break;		
 			case 8:
 				while(1)
@@ -261,7 +255,6 @@ void wybor(int warunek)
 		}
 	}
 }
-
 
 int main(void) {
 	wybor(1);

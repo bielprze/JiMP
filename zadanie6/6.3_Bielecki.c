@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-void losowanie_tablicy(int tab[], int tab_size){
-	
+void losowanie_tablicy(int tab[], int tab_size)
+{
 	srand(time(NULL));	
 	for(int i=0; i<tab_size; i++)
 	{
@@ -18,8 +18,8 @@ void losowanie_tablicy(int tab[], int tab_size){
 	}
 }
 
-void wyswietlanie(int tab[], int tab_size) {
-
+void wyswietlanie(int tab[], int tab_size) 
+{
 	for(int i=0; i<tab_size; i++)
 	{
 		printf("%d ", tab[i]);
@@ -27,8 +27,8 @@ void wyswietlanie(int tab[], int tab_size) {
 	printf("\n");
 }
 
-double srednia(int tab[], int tab_size) {
-	
+double srednia(int tab[], int tab_size) 
+{
 	int suma=0;
 	for(int i=0; i<tab_size; i++)
 	{
@@ -37,8 +37,8 @@ double srednia(int tab[], int tab_size) {
 	return suma/tab_size;
 }	
 
-void bubblesort(int tab[], int tab_size){
-
+void bubblesort(int tab[], int tab_size)
+{
 	int temp;
 	for (int c=0; c<(tab_size-1); c++)
  	{
@@ -55,13 +55,15 @@ void bubblesort(int tab[], int tab_size){
 
 }
 
-double mediana(int tab[], int tab_size){
+double mediana(int tab[], int tab_size)
+{
 	
 	bubblesort(tab, tab_size);
 	return (tab[4]+tab[5])/2;
 }
 
-void maks_i_min(int tab[], int tab_size){
+void maks_i_min(int tab[], int tab_size)
+{
 	bubblesort(tab, tab_size);
 	printf("Wartość maks to: %d , wartość min to: %d\n", tab[9], tab[0]);
 }
@@ -72,7 +74,7 @@ int main(){
 	int warunek1=1;
 	int warunek2;
 	int warunek3=0;
-	int tab_size=sizeof(tab)/sizeof(tab[0]);
+	const int tab_size=sizeof(tab)/sizeof(tab[0]);
 
 	while(warunek1 == 1)
 	{	

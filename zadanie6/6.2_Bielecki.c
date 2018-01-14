@@ -27,9 +27,12 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("MON TUE WED THU FRI SAT SUN\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{	
-			if(i<9) printf(" %d  ", i+1);
-			else printf(" %d ", i+1);
-			if((i%7)==6) printf("\n");
+			if(i<9) 
+				printf(" %d  ", i+1);
+			else 
+				printf(" %d ", i+1);
+			if((i%7)==6) 
+				printf("\n");
 		}
 		break;
 
@@ -38,9 +41,12 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("TUE WED THU FRI SAT SUN MON\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) printf(" %d  ", i+1);
-			else printf(" %d ", i+1);
-			if((i%7)==6) printf("\n");
+			if(i<9) 
+				printf(" %d  ", i+1);
+			else 
+				printf(" %d ", i+1);
+			if((i%7)==6) 
+				printf("\n");
 		}
 		break;
 
@@ -48,9 +54,12 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("WED THU FRI SAT SUN MON TUE\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) printf(" %d  ", i+1);
-			else printf(" %d ", i+1);
-			if((i%7)==6) printf("\n");
+			if(i<9) 
+				printf(" %d  ", i+1);
+			else 
+				printf(" %d ", i+1);
+			if((i%7)==6)
+				printf("\n");
 		}
 		break;
 
@@ -58,9 +67,12 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("THU FRI SAT SUN MON TUE WED\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) printf(" %d  ", i+1);
-			else printf(" %d ", i+1);
-			if((i%7)==6) printf("\n");
+			if(i<9) 
+				printf(" %d  ", i+1);
+			else 
+				printf(" %d ", i+1);
+			if((i%7)==6)
+				printf("\n");
 		}
 		break;
 
@@ -68,9 +80,12 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("FRI SAT SUN MON TUE WED THU\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) printf(" %d  ", i+1);
-			else printf(" %d ", i+1);
-			if((i%7)==6) printf("\n");
+			if(i<9) 
+				printf(" %d  ", i+1);
+			else 
+				printf(" %d ", i+1);
+			if((i%7)==6) 
+				printf("\n");
 		}
 		break;
 
@@ -78,9 +93,12 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("SAT SUN MON TUE WED THU FRI\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) printf(" %d  ", i+1);
-			else printf(" %d ", i+1);
-			if((i%7)==6) printf("\n");
+			if(i<9)
+				printf(" %d  ", i+1);
+			else 
+				printf(" %d ", i+1);
+			if((i%7)==6) 
+				printf("\n");
 		}
 		break;
 

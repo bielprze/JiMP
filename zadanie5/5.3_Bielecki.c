@@ -9,7 +9,7 @@
 
 int main() {
 	int tab[2][2][2];
-	int tab_size=sizeof(tab)/sizeof(tab[0]);
+	const int tab_size=sizeof(tab)/sizeof(tab[0]);
 	printf("%d \n", tab_size);
 
 	wypelnianie(tab, tab_size);
