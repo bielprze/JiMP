@@ -1,10 +1,10 @@
 /*
  ============================================================================
- Name        : wodomierz_2.c
- Author      : Przemys³aw Bielecki
+ Name        : ProjektJIMP.c
+ Author      : Przemyslaw Bielecki
  Version     :
  Copyright   : Your copyright notice
- Description : wodomierz in C, Ansi-style
+ Description : Projekt JIMP in C, Ansi-style
  ============================================================================
  */
 
