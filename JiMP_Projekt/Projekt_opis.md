@@ -8,8 +8,8 @@ Dane testowe znajdują się w katalogu dane_testowe.
 # Wymagania
 Do poprawnego działania programu potrzebna jest biblioteka gtk3 oraz program gnuplot, na ubuntu dostępne w repozytorium:<br />
 <br />
-sudo apt-get install libgtk-3-dev<br />
-sudo apt-get install gnuplot<br />
+`sudo apt-get install libgtk-3-dev`<br />
+`sudo apt-get install gnuplot`<br />
 
 # Sposób użycia
 Kod należy skompilować z dodaniem dostępu do biblioteki gtk, na przykład przy pomocy polecenia:<br />
