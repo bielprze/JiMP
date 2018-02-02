@@ -1,10 +1,10 @@
 /*
  ============================================================================
- Name        : ProjektJIMP.c
- Author      : Przemysław Bielecki
+ Name        : wodomierz_2.c
+ Author      : Przemys�aw Bielecki
  Version     :
  Copyright   : Your copyright notice
- Description : ProjektJIMP in C, Ansi-style
+ Description : wodomierz in C, Ansi-style
  ============================================================================
  */
 
@@ -26,25 +26,23 @@ struct wyniki
 
 static void activate (GtkApplication *app, gpointer user_data)
 {
-  GtkWidget *window;
-  GtkWidget *button;
-  GtkWidget *vbox;
-  GtkWidget *hbox1;
-  GtkWidget *hbox2;
-  GtkWidget *label1;
-  GtkWidget *label2;
-  GtkWidget *label3;
-  GtkWidget *label4;
+	GtkWidget *window;
+	GtkWidget *button;
+	GtkWidget *vbox;
+	GtkWidget *hbox1;
+	GtkWidget *hbox2;
+	GtkWidget *label1;
+	GtkWidget *label2;
+	GtkWidget *label3;
+	GtkWidget *label4;
 
-  struct wyniki *otrzymane_wyniki = user_data;
+	struct wyniki *otrzymane_wyniki = user_data;
 
-  /*Create a window with a title and a default size*/
     window = gtk_application_window_new (app);
     gtk_window_set_title (GTK_WINDOW (window), "Projekt JiMP");
     gtk_window_set_default_size (GTK_WINDOW (window), 250, 150);
     gtk_window_set_position (GTK_WINDOW(window), GTK_WIN_POS_CENTER);
     gtk_window_set_resizable(GTK_WINDOW(window), 0);
-  /*Create a button with a label, and add it to the window*/
 
     label1 = gtk_label_new ("Liczba probek w sygnale wynosi: ");
     label2 = gtk_label_new ("Liczba cykli wynosi: ");
@@ -97,30 +95,32 @@ void kontrola_pliku(FILE* f)
 
 void read_ints (const char* file_name, int data[]) 
 {
-  FILE* file = fopen (file_name, "r");
-  kontrola_pliku(file);
+	FILE* file = fopen (file_name, "r");
+	kontrola_pliku(file);
 
-  int i = 0;
+	int i = 0;
 
-  fscanf (file, "%d", &data[i]);
-  while (!feof (file))
+	fscanf (file, "%d", &data[i]);
+	while (!feof (file))
     {
-	  i++;
-      fscanf (file, "%d", &data[i]);
+		i++;
+    	fscanf (file, "%d", &data[i]);
     }
 
-  fclose (file);
+	fclose (file);
 }
 
 int ilosc_linii(FILE* myfile)
 {
 	int ch, number_of_lines=0;
+
 	do
 	{
 	    ch = fgetc(myfile);
 	    if(ch == '\n')
 	        number_of_lines++;
 	} while (ch != EOF);
+
 	return number_of_lines;
 }
 
@@ -132,18 +132,14 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
-
 	FILE* myfile = fopen(argv[1], "r");
 	kontrola_pliku(myfile);
-
 
 	int number_of_lines = 0;
 	int counter=0;
 	int i=0;
 
 	number_of_lines=ilosc_linii(myfile);
-
-
 
 	int *dataA;
 	dataA=(int*)malloc(number_of_lines* sizeof(*dataA)); 
@@ -166,7 +162,7 @@ int main(int argc, char* argv[]) {
 	int *dataC;
 	dataC=(int*)malloc(number_of_lines* sizeof(*dataC)); 
 	fclose(myfile);
-	read_ints(argv[3], dataC);\
+	read_ints(argv[3], dataC);
 
 	int *dataD;
 	dataD=(int*)malloc(number_of_lines* sizeof(*dataD));
@@ -174,12 +170,8 @@ int main(int argc, char* argv[]) {
 	int *Odl;
 	Odl=(int*)malloc(number_of_lines/10* sizeof(*Odl));
 
-
 	int odl_counter=0;
 	int kierunek=1;
-
-
-	//Zmienne piki
 	int mxA, mxD;
 	int mnA, mnD;
 	int mxposD;
@@ -212,7 +204,6 @@ int main(int argc, char* argv[]) {
 			dataA[i-2]=dataA[i-2]>>2;
 		}
 
-		// piki na sumie sygna³ów (D)
 		if(dataD[i-2]>mxD)
 		{
 			mxD=dataD[i-2];
@@ -228,7 +219,6 @@ int main(int argc, char* argv[]) {
 			if(dataD[i-2]<mxD-delta)
 			{
 				maxD_acc=mxD;
-				//mxposD=i-2;
 				mnD=dataD[i-2];
 
 			    if(odl_counter>0)
@@ -236,12 +226,10 @@ int main(int argc, char* argv[]) {
 
 				lookformaxD=0;
 
-
 				Odl[odl_counter]=counter;
-				odl_counter++; //odl i max counter w jednym
+				odl_counter++; 
 				counter=0;
 				max_counter=max_counter+1;
-				//kierunek
 				if(dataD[mxposD-1]>dataA[mxposD+1])
 				{
 					if(kierunek==2)
@@ -257,20 +245,10 @@ int main(int argc, char* argv[]) {
 
 					kierunek=1;
 
-
 					if(dir_ch==1)
 					{
-						//printf("-----------------------------------\n");
-						printf("kierunek = %d \n", kierunek);
-						printf("numer próbki = %d \n", i);
 						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
-
-
-						//printf("-----------------------------------\n");
 					}
-
-					//printf("przep³yw = %d \n", flow);
-					//printf("numer próbki = %d \n", i);
 				}
 				else if(dataA[mxposD-1]<dataA[mxposD+1])
 				{
@@ -285,24 +263,15 @@ int main(int argc, char* argv[]) {
 
 					kierunek=2;
 
-
 					if(dir_ch==1)
-					{//printf("-----------------------------------\n");
-						printf("kierunek = %d \n", kierunek);
-						printf("numer próbki = %d \n", i);
+					{
 						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
-						//printf("-----------------------------------\n");
 					}
-
-					//printf("przep³yw = %d \n", flow);
-					//printf("numer próbki = %d \n", i);
-
-
 				}
 
 
-			}//if z delt¹
-		}//if lookformaxD
+			}
+		}
 		else
 		{
 			if(dataD[i-2]>mnD+delta)
@@ -312,17 +281,14 @@ int main(int argc, char* argv[]) {
 			    lookformaxD=1;
 			}
 		}
-		//koniec piki D
-		//piki A
+
 		if(dataA[i-2]>mxA)
 		{
 			mxA=dataA[i-2];
-			//mxposA=i-2;
 		}
 		if(dataA[i-2]<mnA)
 		{
 			mnA=dataA[i-2];
-			//mnposA=i-2;
 		}
 
 		if(lookformaxA)
@@ -332,7 +298,6 @@ int main(int argc, char* argv[]) {
 				mnA=dataA[i-2];
 				lookformaxA=0;
 				max_counterB=max_counterB+1;
-
 			}
 		}
 		else
@@ -344,24 +309,16 @@ int main(int argc, char* argv[]) {
 			}
 		}
 
-
-
 		counter=counter+1;
 	}
 	fclose(max_file);
 
 	fprintf(dir_file, "%d  %d\n", number_of_lines, kierunek+600);
 
-
-
 	struct wyniki *otrzymane_wyniki_wsk, otrzymane_wyniki;
-
-	printf("liczba okresów = %d \n", max_counter);
-	printf("numeber of lines = %d \n", number_of_lines);
 
 	otrzymane_wyniki.number_of_cycles = max_counter;
 	otrzymane_wyniki.number_of_samples = number_of_lines;
-
 	otrzymane_wyniki_wsk=&otrzymane_wyniki;
 
 	free(dataA);
@@ -378,15 +335,11 @@ int main(int argc, char* argv[]) {
 
 	fclose(f);
 
-
-
-
 	int a=fork();
-
 
 	if(a>0)
 	{
-		char * commandsForGnuplot[] = {"set title \"Wykres z zaznaczonymi maksimami\"", "plot 'dataD.txt' with lines, 'max_tab.txt' with points, 'dir_tab.txt' with histeps"};
+		char * commandsForGnuplot[] = {"set title \"Wykres z zaznaczonymi maksimami\"", "plot 'dataD.txt' with lines title 'wykres sygnalu', 'max_tab.txt' with points title 'maksima', 'dir_tab.txt' with histeps title 'linia kierunku'"};
    		FILE * temp = fopen("dataD.txt", "w");																
     	kontrola_pliku(temp);
 
@@ -395,12 +348,12 @@ int main(int argc, char* argv[]) {
 
     	for (i=0; i < number_of_lines; i++)
     	{
-   		 	fprintf(temp, "%d \n", dataD[i]); //Write the data to a temporary file
+   		 	fprintf(temp, "%d \n", dataD[i]);
     	}
 
     	for (i=0; i < NUM_COMMANDS; i++)
     	{
-    		fprintf(gnuplotPipe, "%s \n", commandsForGnuplot[i]); //Send commands to gnuplot one by one.
+    		fprintf(gnuplotPipe, "%s \n", commandsForGnuplot[i]);
     	}
 
     	free(dataD);
