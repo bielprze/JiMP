@@ -13,7 +13,7 @@ sudo apt-get install gnuplot<br />
 
 # Sposób użycia
 Kod należy skompilować z dodaniem dostępu do biblioteki gtk, na przykład przy pomocy polecenia:<br />
-`gcc ProjektJIMP.c \`pkg-config --cflags --libs gtk+-3.0\` -Wall -Werror -Wextra -pedantic -lm`<br />
+`gcc ProjektJIMP.c` `` `pkg-config --cflags --libs gtk+-3.0` `` `-Wall -Werror -Wextra -pedantic -lm`<br />
 aby zadziałał należy podać 3 argumenty, będące nazwami/ścieżkami do plików z danymi, np:<br />
 
 `./a.out dane_testowe/zestaw_1/0_70st_1.txt dane_testowe/zestaw_1/0_70st_2.txt dane_testowe/zestaw_1/0_70st_3.txt`
