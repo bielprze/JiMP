@@ -1,10 +1,10 @@
 /*
  ============================================================================
- Name        : wodomierz_2.c
- Author      : Przemys³aw Bielecki
+ Name        : ProjektJIMP.c
+ Author      : PrzemysÅ‚aw Bielecki
  Version     :
  Copyright   : Your copyright notice
- Description : wodomierz in C, Ansi-style
+ Description : ProjektJIMP in C, Ansi-style
  ============================================================================
  */
 
@@ -212,7 +212,7 @@ int main(int argc, char* argv[]) {
 			dataA[i-2]=dataA[i-2]>>2;
 		}
 
-		// piki na sumie sygna³ów (D)
+		// piki na sumie sygnaÂ³Ã³w (D)
 		if(dataD[i-2]>mxD)
 		{
 			mxD=dataD[i-2];
@@ -262,15 +262,15 @@ int main(int argc, char* argv[]) {
 					{
 						//printf("-----------------------------------\n");
 						printf("kierunek = %d \n", kierunek);
-						printf("numer próbki = %d \n", i);
+						printf("numer prÃ³bki = %d \n", i);
 						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
 
 
 						//printf("-----------------------------------\n");
 					}
 
-					//printf("przep³yw = %d \n", flow);
-					//printf("numer próbki = %d \n", i);
+					//printf("przepÂ³yw = %d \n", flow);
+					//printf("numer prÃ³bki = %d \n", i);
 				}
 				else if(dataA[mxposD-1]<dataA[mxposD+1])
 				{
@@ -289,19 +289,19 @@ int main(int argc, char* argv[]) {
 					if(dir_ch==1)
 					{//printf("-----------------------------------\n");
 						printf("kierunek = %d \n", kierunek);
-						printf("numer próbki = %d \n", i);
+						printf("numer prÃ³bki = %d \n", i);
 						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
 						//printf("-----------------------------------\n");
 					}
 
-					//printf("przep³yw = %d \n", flow);
-					//printf("numer próbki = %d \n", i);
+					//printf("przepÂ³yw = %d \n", flow);
+					//printf("numer prÃ³bki = %d \n", i);
 
 
 				}
 
 
-			}//if z delt¹
+			}//if z deltÂ¹
 		}//if lookformaxD
 		else
 		{
@@ -356,7 +356,7 @@ int main(int argc, char* argv[]) {
 
 	struct wyniki *otrzymane_wyniki_wsk, otrzymane_wyniki;
 
-	printf("liczba okresów = %d \n", max_counter);
+	printf("liczba okresÃ³w = %d \n", max_counter);
 	printf("numeber of lines = %d \n", number_of_lines);
 
 	otrzymane_wyniki.number_of_cycles = max_counter;
