@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int numberCheck(int);
-void arrayOperations(int*, int);
-int compare(const void *, const void* );
-
 void kontrola(int *tab, int ilosc_liczb)
 {
     if(NULL==tab)
