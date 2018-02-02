@@ -65,7 +65,7 @@ int main(void)
 
 	int tab_num[10];
 	int *tab_wsk[10];
-	int tab_size=sizeof(tab_num)/sizeof(tab_num[0]);	
+	const int tab_size=sizeof(tab_num)/sizeof(tab_num[0]);	
 	
 	wypelnianie(tab_num, tab_size);	
 	wsk_do_num(tab_num, tab_wsk, tab_size);

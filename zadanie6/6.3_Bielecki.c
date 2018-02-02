@@ -37,6 +37,13 @@ double srednia(int tab[], int tab_size)
 	return suma/tab_size;
 }	
 
+void zamien(int tab[], int miejsce_w_tablicy)
+{
+	int temp=tab[miejsce_w_tablicy];
+        tab[miejsce_w_tablicy]=tab[miejsce_w_tablicy+1];
+       	tab[miejsce_w_tablicy+1]=temp;
+}
+
 void bubblesort(int tab[], int tab_size)
 {
 	int temp;
@@ -46,9 +53,7 @@ void bubblesort(int tab[], int tab_size)
 		{
 			if (tab[d] > tab[d+1]) 
 			{
-				temp=tab[d];
-        			tab[d]=tab[d+1];
-       				tab[d+1]=temp;
+				zamien(tab, d);
 			}
 		}
 	}
@@ -87,20 +92,28 @@ int main(){
 			warunek3=1;
 			break;
 		case 2:
-			if(warunek3==1) wyswietlanie(tab, tab_size);
-			else printf("Nie wypełnino tablicy!\n");
+			if(warunek3==1) 
+				wyswietlanie(tab, tab_size);
+			else 
+				printf("Nie wypełnino tablicy!\n");
 			break;
 		case 3: 
-			if(warunek3==1) srednia(tab, tab_size);
-			else printf("Nie wypełnino tablicy!\n");
+			if(warunek3==1) 
+				srednia(tab, tab_size);
+			else 
+				printf("Nie wypełnino tablicy!\n");
 			break;
 		case 4:
-			if(warunek3==1) mediana(tab, tab_size);
-			else printf("Nie wypełnino tablicy!\n");
+			if(warunek3==1) 
+				mediana(tab, tab_size);
+			else 
+				printf("Nie wypełnino tablicy!\n");
 			break;
 		case 5: 
-			if(warunek3==1) maks_i_min(tab, tab_size);
-			else printf("Nie wypełnino tablicy!\n");
+			if(warunek3==1) 
+				maks_i_min(tab, tab_size);
+			else 
+				printf("Nie wypełnino tablicy!\n");
 			break;
 		case 6:
 			warunek1=0;

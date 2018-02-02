@@ -10,10 +10,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-void losowanie_tablicy(double tab[10])
+void losowanie_tablicy(int tab_size, double tab[tab_size])
 {	
 	srand(time(NULL));	
-	for(int i=0; i<10; i++)
+	for(int i=0; i<tab_size; i++)
 	{
 		tab[i]=rand()%100;
 	}
@@ -21,9 +21,9 @@ void losowanie_tablicy(double tab[10])
 	tab[9]=1;
 }
 
-void wyswietlanie(double tab[10])
+void wyswietlanie(int tab_size, double tab[tab_size])
 {
-	for(int i=0; i<10; i++)
+	for(int i=0; i<tab_size; i++)
 	{
 		printf("%f ", tab[i]);
 	}
@@ -57,14 +57,14 @@ double* ostatni_element(const double* tab, int size)
 
 int main() 
 {
-
 	double tab[10];
 	double *wsk_a, *wsk_b;
+	int tab_size=sizeof(tab)/sizeof(tab[0]);
 	
-	losowanie_tablicy(tab);
+	losowanie_tablicy(tab, tab_size);
 
 	wsk_a=tab;
-	wsk_b=ostatni_element(tab, 10);
+	wsk_b=ostatni_element(tab, tab_size);
 
 	printf("srednia wazona: %f\n", srednia(wsk_a, wsk_b));
 

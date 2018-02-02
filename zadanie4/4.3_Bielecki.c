@@ -21,22 +21,22 @@ void podzial_tablicy(int tab[], int counter, int tab_podzielona[], int tab_size)
 	switch (counter)
 	{
 	case 1:
-	for(int i=0; i<tab_size; i=i+1)
-	{
-		tab_podzielona[i]=tab[i];
-	}
+		for(int i=0; i<tab_size; i=i+1)
+		{
+			tab_podzielona[i]=tab[i];
+		}
 	break;
 	case 2:
-	for(int i=0; i<tab_size; i=i+1)
-	{
-		tab_podzielona[i]=tab[i+tab_size];
-	}
+		for(int i=0; i<tab_size; i=i+1)
+		{
+			tab_podzielona[i]=tab[i+tab_size];
+		}
 	break;
 	case 3:
-	for(int i=0; i<tab_size; i=i+1)
-	{
-		tab_podzielona[i]=tab[i+tab_size+tab_size];
-	}
+		for(int i=0; i<tab_size; i=i+1)
+		{
+			tab_podzielona[i]=tab[i+tab_size+tab_size];
+		}
 	break;
 	}
 	

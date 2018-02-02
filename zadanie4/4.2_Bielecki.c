@@ -29,15 +29,14 @@ void wypelnianie_tablicy(int tab[], int tab_size)
 
 int szukanie_liczby(int x, int tab[], int begin, int end)
 {
-	int s;
-	s=(begin+end)/2;
-	if(tab[s]>x) 
-		return szukanie_liczby(x, tab, begin, s-1);
+	int polowa_zakresu=(begin+end)/2;
+	if(tab[polowa_zakresu]>x) 
+		return szukanie_liczby(x, tab, begin, polowa_zakresu-1);
 	
-	if(tab[s]<x)
-		return szukanie_liczby(x, tab, s+1, end);
+	if(tab[polowa_zakresu]<x)
+		return szukanie_liczby(x, tab, polowa_zakresu+1, end);
 	
-	return s;
+	return polowa_zakresu;
 }
 
 int main() {

@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <math.h>
 
-struct pierwiastki
+struct Pierwiastek
 {
 	double pierwiastek1;
 	double pierwiastek2;
@@ -21,9 +21,9 @@ double licz_delta(double a, double b, double c)
 	return delta;
 }
 
-struct pierwiastki licz_pierwiastki(double a, double b, double delta)
+struct Pierwiastek licz_pierwiastki(double a, double b, double delta)
 {	
-	struct pierwiastki x;
+	struct Pierwiastek x;
 	x.pierwiastek1=(-1*b-sqrt(delta))/2*a;
 	x.pierwiastek2=(-1*b+sqrt(delta))/2*a;
 
@@ -50,7 +50,7 @@ int main()
 		printf("Brak pierwiastkow rzeczywistych\n");
 	else
 	{	
-		struct pierwiastki x;
+		struct Pierwiastek x;
 		x=licz_pierwiastki(wartosc_delta, a, b);
 		if(x.pierwiastek1==x.pierwiastek2)
 			printf("delta 0, jest jeden podwójny pierwiastek: %lf\n", x.pierwiastek1);

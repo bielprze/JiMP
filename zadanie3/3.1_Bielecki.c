@@ -35,27 +35,27 @@ double pole_kolo(double r)
 	return pole;
 }
 
-double celcius_to_fahrenheit(double TempC)
+double celcius_to_fahrenheit(double tempC)
 {
-	double TempK=32+1.8*TempC;
-	return TempK;
+	double tempK=32+1.8*tempC;
+	return tempK;
 }
 
-double fahrenheit_to_celcius(double TempF)
+double fahrenheit_to_celcius(double tempF)
 {
-	double TempK=0.56*(TempF-32);
-	return TempK;
+	double tempK=0.56*(tempF-32);
+	return tempK;
 }
 
-double degrees_to_radians(double Deg)
+double degrees_to_radians(double deg)
 {
-	double ang=Deg*(PI/180);
+	double ang=deg*(PI/180);
 	return ang;
 }
 
-double radians_to_degrees(double Rad)
+double radians_to_degrees(double rad)
 {
-	double ang=Rad*(180/PI);
+	double ang=rad*(180/PI);
 	return ang;
 }
 

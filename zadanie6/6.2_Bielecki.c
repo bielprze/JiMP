@@ -27,10 +27,8 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("MON TUE WED THU FRI SAT SUN\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{	
-			if(i<9) 
-				printf(" %d  ", i+1);
-			else 
-				printf(" %d ", i+1);
+
+			printf("%3d ", i+1);
 			if((i%7)==6) 
 				printf("\n");
 		}
@@ -41,10 +39,8 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("TUE WED THU FRI SAT SUN MON\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) 
-				printf(" %d  ", i+1);
-			else 
-				printf(" %d ", i+1);
+
+			printf("%3d ", i+1);
 			if((i%7)==6) 
 				printf("\n");
 		}
@@ -54,10 +50,7 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("WED THU FRI SAT SUN MON TUE\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) 
-				printf(" %d  ", i+1);
-			else 
-				printf(" %d ", i+1);
+			printf("%3d ", i+1);
 			if((i%7)==6)
 				printf("\n");
 		}
@@ -67,10 +60,7 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("THU FRI SAT SUN MON TUE WED\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) 
-				printf(" %d  ", i+1);
-			else 
-				printf(" %d ", i+1);
+			printf("%3d ", i+1);
 			if((i%7)==6)
 				printf("\n");
 		}
@@ -80,10 +70,7 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("FRI SAT SUN MON TUE WED THU\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) 
-				printf(" %d  ", i+1);
-			else 
-				printf(" %d ", i+1);
+			printf("%3d ", i+1);
 			if((i%7)==6) 
 				printf("\n");
 		}
@@ -93,10 +80,7 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("SAT SUN MON TUE WED THU FRI\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9)
-				printf(" %d  ", i+1);
-			else 
-				printf(" %d ", i+1);
+			printf("%3d ", i+1);
 			if((i%7)==6) 
 				printf("\n");
 		}
@@ -107,9 +91,9 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("SUN MON TUE WED THU FRI SAT\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-			if(i<9) printf(" %d  ", i+1);
-			else printf(" %d ", i+1);
-			if((i%7)==6) printf("\n");
+			printf(" %d ", i+1);
+			if((i%7)==6) 
+				printf("\n");
 		}
 		break;
 	}
@@ -161,13 +145,20 @@ int sprawdz_dzien(char day[])
 {
 	int dzien;
 
-	if(day[0]=='M') dzien=1; 
-	if(day[0]=='T' && day[1]=='u') dzien=2;
-	if(day[0]=='W') dzien=3;
-	if(day[0]=='T' && day[1]=='h') dzien=4;
-	if(day[0]=='F') dzien=5;
-	if(day[0]=='S' && day[1]=='a') dzien=6;
-	if(day[0]=='S' && day[1]=='u') dzien=0;
+	if(day[0]=='M') 
+		dzien=1; 
+	if(day[0]=='T' && day[1]=='u') 
+		dzien=2;
+	if(day[0]=='W') 	
+		dzien=3;
+	if(day[0]=='T' && day[1]=='h')
+		 dzien=4;
+	if(day[0]=='F') 
+		dzien=5;
+	if(day[0]=='S' && day[1]=='a')
+		dzien=6;
+	if(day[0]=='S' && day[1]=='u') 
+		dzien=0;
 
 	return dzien;
 }
@@ -176,7 +167,8 @@ int przesun_na_pierwszy_tydzien(int dday)
 {
 	while(1)
 	{
-		if(dday>7) dday=dday-7;
+		if(dday>7) 
+			dday=dday-7;
 		else 
 			break;
 	}
@@ -194,7 +186,7 @@ int sprawdz_dzien_tygodnia(int daycheck, int countcheck)
 	return daycheck;
 }
 
-int modulo(int a, int b)
+int operacja_wyznaczania_reszty_z_dzielenia(int a, int b)
 {
     int r=a%b;
     return r<0?r+b:r;
@@ -204,42 +196,42 @@ int main() {
 	
 	time_t mytime;
 	mytime = time(NULL);
-	char tab[25];
+
+	char tab[25];	
 	strcpy(tab,  ctime(&mytime));
 	printf("%s\n", ctime(&mytime));
 
-	char month[3], day[3], day_number1[1], day_number2[1], year[4];
-	int ilosc_dni;
-	int numer_dnia1;
-	int dzien;
-	int dday;
-	int year_int;
-	//21 22 23 24
 
-	
+	char year[4];
 	strncpy(year, tab+20, 4);
+
+	char day[3];
 	strncpy(day, tab, 3);
+
+	char month[3];
 	strncpy(month, tab+4, 3);
-	year_int=atoi(year);
+
+	const int year_int=atoi(year);
 	
+	char day_number1[1], day_number2[1];
 	day_number1[0]=tab[8];
 	day_number2[0]=tab[9];
 	day_number2[0]=day_number2[0];
 
-	numer_dnia1=atoi(day_number1);
+	const int numer_dnia1=atoi(day_number1);
 	
-	ilosc_dni=sprawdz_ilosc_dni(month, year_int);
-	dzien=sprawdz_dzien(day);
-
-	dday=numer_dnia1;
+	const int dzien=sprawdz_dzien(day);
+	const int ilosc_dni=sprawdz_ilosc_dni(month, year_int);
+	
+	int dday=numer_dnia1;
 	dday=przesun_na_pierwszy_tydzien(dday);
 
+	
 	int daycheck=dzien;
 	int countcheck=dday;
 	
 	daycheck=sprawdz_dzien_tygodnia(daycheck, countcheck);
-
-	daycheck=modulo(daycheck, 7);
+	daycheck=operacja_wyznaczania_reszty_z_dzielenia(daycheck, 7);
 	wyswietlanie(daycheck, ilosc_dni);
 
 	return 0;

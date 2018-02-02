@@ -60,16 +60,13 @@ int sprawdz_ilosc_argumentow(char* napis)
 	for(int i=0; i<dlugosc; i++)
 	{
 		if(napis[i]=='%' && napis[i+1]=='d')
-		{
 			suma=suma+1;
-		}
 	}
 	return suma;
 }
 
 int main(void)
 {
-
 	int suma;
 	char* napis;
 	printf("Podaj swoj napis, %%d gdzie ma być zmienna\n"); 
