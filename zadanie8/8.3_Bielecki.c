@@ -23,7 +23,6 @@ long long copy_to_char_and_do_the_rest(void* data, size_t size)
 	printf("suma: %lld", suma);
 	printf("\n");
 	return suma;
-
 }
 
 int main()
@@ -46,6 +45,5 @@ int main()
 	void *arg_f = &zmienna_float;
    	copy_to_char_and_do_the_rest(arg_f,sizeof(zmienna_float));
 	
-    return 0;
+	return 0;
 }
-
