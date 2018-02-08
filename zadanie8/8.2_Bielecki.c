@@ -13,11 +13,11 @@ void wyswietl_char(const void* argument, const unsigned width)
     
 	else
 	{
-        if(width % 2 == 1)
-            printf("%*c%c\n", (width-1) / 2, ' ', arg);
+        	if(width % 2 == 1)
+           		printf("%*c%c\n", (width-1) / 2, ' ', arg);
         
-        else
-            printf("%*c%c\n", (width/2-1), ' ', arg);
+        	else
+        		printf("%*c%c\n", (width/2-1), ' ', arg);
     	}
 }
 
@@ -31,11 +31,11 @@ void wyswietl_charp(const void* argument, const unsigned width)
 		printf("%s\n", arg);
 	else
 	{
-        if((width-strlen(arg))% 2 == 1)
-            printf("%*c%s\n",(width-length-1)/2,' ', arg);
+        	if((width-strlen(arg))% 2 == 1)
+            		printf("%*c%s\n",(width-length-1)/2,' ', arg);
         
-        else
-            printf("%*c%s\n",((width-length)/2),' ', arg);
+        	else
+        		printf("%*c%s\n",((width-length)/2),' ', arg);
     	}
 }
 
@@ -82,15 +82,17 @@ void wyswietl_double(const void* argument, const unsigned width)
          	}
 	}
         
-    if(po_przecinku>=width){
-        printf("%.*f\n",po_przecinku ,*(double*)argument);
-    }
-    else if((width-length)%2 == 1){
-        printf("%*c%.*f\n",(width-length-1)/2,' ',po_przecinku,*(double*)argument);
-    }
-    else{
-        printf("%*c%.*f\n",((width-length)/2),' ',po_przecinku,*(double*)argument);
-}
+ 	if(po_przecinku>=width)
+ 	{
+        	printf("%.*f\n",po_przecinku ,*(double*)argument);
+	}
+	else if((width-length)%2 == 1){
+        	printf("%*c%.*f\n",(width-length-1)/2,' ',po_przecinku,*(double*)argument);
+	}
+	else
+	{
+	        printf("%*c%.*f\n",((width-length)/2),' ',po_przecinku,*(double*)argument);
+	}
 }
 
 void printArgumentInTheMiddle(enum ArgumentType typ, void *argument, unsigned width)
@@ -111,7 +113,8 @@ void printArgumentInTheMiddle(enum ArgumentType typ, void *argument, unsigned wi
        		wyswietl_double(argument, width);
 }
 
-char *inputString(FILE* fp, size_t size){
+char *inputString(FILE* fp, size_t size)
+{
 	char *napis;
 	int ch;
 	size_t dlugosc = 0;
