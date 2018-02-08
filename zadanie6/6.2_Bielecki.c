@@ -27,7 +27,6 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("MON TUE WED THU FRI SAT SUN\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{	
-
 			printf("%3d ", i+1);
 			if((i%7)==6) 
 				printf("\n");
@@ -39,7 +38,6 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("TUE WED THU FRI SAT SUN MON\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
-
 			printf("%3d ", i+1);
 			if((i%7)==6) 
 				printf("\n");
