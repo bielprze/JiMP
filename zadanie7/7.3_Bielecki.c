@@ -17,7 +17,8 @@ void wypelnianie(int *tab_num, int tab_size)
 	}
 	
 }
-void sortowanie_wskaznikow(int* tab_wsk[], int tab_size){
+void sortowanie_wskaznikow(int* tab_wsk[], int tab_size)
+{
 	for(int i = 0; i < tab_size; ++i)
 	{
 		int flag = 0;
@@ -74,6 +75,5 @@ int main(void)
 
 	return 0;
 }
-
 
 
