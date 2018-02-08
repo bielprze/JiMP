@@ -57,12 +57,10 @@ void bubblesort(int tab[], int tab_size)
 			}
 		}
 	}
-
 }
 
 double mediana(int tab[], int tab_size)
 {
-	
 	bubblesort(tab, tab_size);
 	return (tab[4]+tab[5])/2;
 }
@@ -73,8 +71,8 @@ void maks_i_min(int tab[], int tab_size)
 	printf("Wartość maks to: %d , wartość min to: %d\n", tab[9], tab[0]);
 }
 
-int main(){
-
+int main()
+{
 	int tab[10];	
 	int warunek1=1;
 	int warunek2;
