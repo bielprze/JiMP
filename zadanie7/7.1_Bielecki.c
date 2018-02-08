@@ -5,7 +5,6 @@
  ============================================================================
  */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -59,9 +58,9 @@ int main()
 {
 	double tab[10];
 	double *wsk_a, *wsk_b;
-	int tab_size=sizeof(tab)/sizeof(tab[0]);
+	const int tab_size=sizeof(tab)/sizeof(tab[0]);
 	
-	losowanie_tablicy(tab, tab_size);
+	losowanie_tablicy(tab_size, tab);
 
 	wsk_a=tab;
 	wsk_b=ostatni_element(tab, tab_size);
