@@ -91,7 +91,7 @@ static void activate (GtkApplication *app, gpointer user_data)
 
 void kontrola_pliku(FILE* f)
 {
-    if(NULL==f)
+	if(NULL==f)
 	{
 		printf("Nie udalo sie otworzyc pliku\n");
 		exit(1);
@@ -108,10 +108,10 @@ void read_ints (const char* file_name, int data[])
 
 	fscanf (file, "%d", &data[i]);
 	while (!feof (file))
-    {
+	{
 		i++;
     	fscanf (file, "%d", &data[i]);
-    }
+	}
 
 	fclose (file);
 }
@@ -122,8 +122,8 @@ int ilosc_linii(FILE* myfile)
 
 	do
 	{
-	    ch = fgetc(myfile);
-	    if(ch == '\n')
+		ch = fgetc(myfile);
+		if(ch == '\n')
 	        number_of_lines++;
 	} while (ch != EOF);
 
