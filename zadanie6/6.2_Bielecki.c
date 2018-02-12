@@ -27,6 +27,7 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("MON TUE WED THU FRI SAT SUN\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{	
+
 			printf("%3d ", i+1);
 			if((i%7)==6) 
 				printf("\n");
@@ -38,6 +39,7 @@ void wyswietlanie(int daycheck, int ilosc_dni)
 		printf("TUE WED THU FRI SAT SUN MON\n");
 		for(int i=0; i<ilosc_dni; i++)
 		{
+
 			printf("%3d ", i+1);
 			if((i%7)==6) 
 				printf("\n");
@@ -190,24 +192,26 @@ int operacja_wyznaczania_reszty_z_dzielenia(int a, int b)
     return r<0?r+b:r;
 }
 
-int main() {
-	
+void day_month_year(char tab[], char day[], char month[], char year[])
+{
 	time_t mytime;
 	mytime = time(NULL);
 
-	char tab[25];	
 	strcpy(tab,  ctime(&mytime));
 	printf("%s\n", ctime(&mytime));
-
-
-	char year[4];
 	strncpy(year, tab+20, 4);
-
-	char day[3];
 	strncpy(day, tab, 3);
-
-	char month[3];
 	strncpy(month, tab+4, 3);
+}
+
+int main() 
+{
+	char tab[25];	
+	char year[4];
+	char day[3];
+	char month[3];
+	
+	day_month_year(tab, day, month, year);
 
 	const int year_int=atoi(year);
 	
