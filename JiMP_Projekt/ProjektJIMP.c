@@ -4,7 +4,7 @@
  Author      : Przemyslaw Bielecki
  Version     :
  Copyright   : Your copyright notice
- Description : Projekt JIMP in C, Ansi-style
+ Description : ProjektJIMP, Ansi-style
  ============================================================================
  */
 
@@ -24,6 +24,12 @@ struct wyniki
 	int number_of_samples;
 };
 
+struct kierunek_flaga
+{
+	int kierunek;
+	int dir_ch;
+};
+
 static void activate (GtkApplication *app, gpointer user_data)
 {
 	GtkWidget *window;
@@ -38,49 +44,49 @@ static void activate (GtkApplication *app, gpointer user_data)
 
 	struct wyniki *otrzymane_wyniki = user_data;
 
-    window = gtk_application_window_new (app);
-    gtk_window_set_title (GTK_WINDOW (window), "Projekt JiMP");
-    gtk_window_set_default_size (GTK_WINDOW (window), 250, 150);
-    gtk_window_set_position (GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-    gtk_window_set_resizable(GTK_WINDOW(window), 0);
+	window = gtk_application_window_new (app);
+	gtk_window_set_title (GTK_WINDOW (window), "Projekt JiMP");
+	gtk_window_set_default_size (GTK_WINDOW (window), 250, 150);
+	gtk_window_set_position (GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+	gtk_window_set_resizable(GTK_WINDOW(window), 0);
 
-    label1 = gtk_label_new ("Liczba probek w sygnale wynosi: ");
-    label2 = gtk_label_new ("Liczba cykli wynosi: ");
+	label1 = gtk_label_new ("Liczba probek w sygnale wynosi: ");
+	label2 = gtk_label_new ("Liczba cykli wynosi: ");
 
-    label3 = gtk_label_new ("0");
-    label4 = gtk_label_new ("0");
+	label3 = gtk_label_new ("0");
+	label4 = gtk_label_new ("0");
 
-    char *display1, *display2;
+	char *display1, *display2;
 
-    display1 = g_strdup_printf("%d", otrzymane_wyniki->number_of_samples);
-    gtk_label_set_text (GTK_LABEL(label3), display1);
+	display1 = g_strdup_printf("%d", otrzymane_wyniki->number_of_samples);
+	gtk_label_set_text (GTK_LABEL(label3), display1);
 
-    display2 = g_strdup_printf("%d", otrzymane_wyniki->number_of_cycles);
-    gtk_label_set_text (GTK_LABEL(label4), display2);
+	display2 = g_strdup_printf("%d", otrzymane_wyniki->number_of_cycles);
+	gtk_label_set_text (GTK_LABEL(label4), display2);
 
-    free(display1);
-    free(display2);
+	free(display1);
+	free(display2);
 
-    button = gtk_button_new_with_label ("OK");
+	button = gtk_button_new_with_label ("OK");
 
-    hbox1=gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 1);
-    gtk_box_pack_start (GTK_BOX(hbox1), label1, 0, 0, 10);
-    gtk_box_pack_start (GTK_BOX(hbox1), label3, 0, 0, 0);
+	hbox1=gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 1);
+	gtk_box_pack_start (GTK_BOX(hbox1), label1, 0, 0, 10);
+	gtk_box_pack_start (GTK_BOX(hbox1), label3, 0, 0, 0);
 
-    hbox2=gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 1);
-    gtk_box_pack_start (GTK_BOX(hbox2), label2, 0, 0, 10);
-    gtk_box_pack_start (GTK_BOX(hbox2), label4, 0, 0, 0);
+	hbox2=gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 1);
+	gtk_box_pack_start (GTK_BOX(hbox2), label2, 0, 0, 10);
+	gtk_box_pack_start (GTK_BOX(hbox2), label4, 0, 0, 0);
 
-    vbox=gtk_box_new (GTK_ORIENTATION_VERTICAL, 1);
-    gtk_box_pack_start (GTK_BOX(vbox), hbox1, 0, 0, 10);
-    gtk_box_pack_start (GTK_BOX(vbox), hbox2, 0, 0, 10);
-    gtk_box_pack_start (GTK_BOX(vbox), button, 0, 0, 10);
+	vbox=gtk_box_new (GTK_ORIENTATION_VERTICAL, 1);
+	gtk_box_pack_start (GTK_BOX(vbox), hbox1, 0, 0, 10);
+	gtk_box_pack_start (GTK_BOX(vbox), hbox2, 0, 0, 10);
+	gtk_box_pack_start (GTK_BOX(vbox), button, 0, 0, 10);
 
-    gtk_container_add (GTK_CONTAINER (window), vbox);
+	gtk_container_add (GTK_CONTAINER (window), vbox);
 
-    g_signal_connect_swapped(button, "clicked", G_CALLBACK (gtk_widget_destroy), window);
+	g_signal_connect_swapped(button, "clicked", G_CALLBACK (gtk_widget_destroy), window);
 
-    gtk_widget_show_all (window);
+	gtk_widget_show_all (window);
 }
 
 void kontrola_pliku(FILE* f)
@@ -122,6 +128,66 @@ int ilosc_linii(FILE* myfile)
 	} while (ch != EOF);
 
 	return number_of_lines;
+}
+
+void filtracja (int dataD[], int dataA[], int i)
+{
+	dataD[i-2]=dataD[i-3]+dataD[i-2]+dataD[i-1]+dataD[i];
+	dataD[i-2]=dataD[i-2]>>2;
+	dataA[i-2]=dataA[i-3]+dataA[i-2]+dataA[i-1]+dataA[i];
+	dataA[i-2]=dataA[i-2]>>2;
+}
+
+void suma_sygnalow(int dataD[], int dataA[], int dataB[], int dataC[], int number_of_lines)
+{
+	for(int i=0; i<number_of_lines; i++)
+	{
+		dataD[i]=dataA[i]+dataB[i]-dataC[i];
+	}
+}
+
+struct kierunek_flaga find_direction(int dataD[], int dataA[], int mxposD, FILE* dir_file, int i, struct kierunek_flaga dir_fl)
+{
+	if(dataD[mxposD-1]>dataA[mxposD+1])
+	{
+		if(dir_fl.kierunek==2)
+		{
+			dir_fl.dir_ch=1;
+			fprintf(dir_file, "%d  %d\n", i, dir_fl.kierunek+600);
+		}
+		else if (dir_fl.kierunek==1)
+		{
+			dir_fl.dir_ch=0;
+			fprintf(dir_file, "%d  %d\n", i,dir_fl.kierunek+600);
+		}
+
+		dir_fl.kierunek=1;
+
+		if(dir_fl.dir_ch==1)
+		{
+			fprintf(dir_file, "%d  %d\n", i, dir_fl.kierunek+600);
+		}
+	}
+	else if(dataA[mxposD-1]<dataA[mxposD+1])
+	{
+		if(dir_fl.kierunek==1) 
+		{
+			dir_fl.dir_ch=1;
+			fprintf(dir_file, "%d  %d\n", i, dir_fl.kierunek+600);
+		}
+		else
+		{
+			dir_fl.dir_ch=0;
+			fprintf(dir_file, "%d  %d\n", i, dir_fl.kierunek+600);
+		}
+		dir_fl.kierunek=2;
+
+		if(dir_fl.dir_ch==1)
+		{
+			fprintf(dir_file, "%d  %d\n", i, dir_fl.kierunek+600);
+		}
+	}
+	return dir_fl;
 }
 
 int main(int argc, char* argv[]) {
@@ -171,7 +237,6 @@ int main(int argc, char* argv[]) {
 	Odl=(int*)malloc(number_of_lines/10* sizeof(*Odl));
 
 	int odl_counter=0;
-	int kierunek=1;
 	int mxA, mxD;
 	int mnA, mnD;
 	int mxposD;
@@ -180,7 +245,10 @@ int main(int argc, char* argv[]) {
 	int maxD_acc;
 	int max_counter=-1;
 	int max_counterB=0;
-	int dir_ch=0;
+
+	struct kierunek_flaga dir_fl;
+	dir_fl.kierunek=1;
+	dir_fl.dir_ch=0;
 	 
 	FILE* max_file = fopen("max_tab.txt", "w");
 	kontrola_pliku(max_file);
@@ -188,20 +256,13 @@ int main(int argc, char* argv[]) {
 	FILE* dir_file = fopen("dir_tab.txt", "w");
 	kontrola_pliku(dir_file);
 
-
-	for(i=0; i<number_of_lines; i++)
-		{
-			dataD[i]=dataA[i]+dataB[i]-dataC[i];
-		}
+	suma_sygnalow(dataD, dataA, dataB, dataC, number_of_lines);
 
 	for (i=0; i<number_of_lines; i++)
 	{
 		if(counter>21)// urednianie
 		{
-			dataD[i-2]=dataD[i-3]+dataD[i-2]+dataD[i-1]+dataD[i];
-			dataD[i-2]=dataD[i-2]>>2;
-			dataA[i-2]=dataA[i-3]+dataA[i-2]+dataA[i-1]+dataA[i];
-			dataA[i-2]=dataA[i-2]>>2;
+			filtracja(dataD, dataA, i);
 		}
 
 		if(dataD[i-2]>mxD)
@@ -230,46 +291,7 @@ int main(int argc, char* argv[]) {
 				odl_counter++; 
 				counter=0;
 				max_counter=max_counter+1;
-				if(dataD[mxposD-1]>dataA[mxposD+1])
-				{
-					if(kierunek==2)
-					{
-						dir_ch=1;
-						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
-					}
-					else if (kierunek==1)
-					{
-						dir_ch=0;
-						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
-					}
-
-					kierunek=1;
-
-					if(dir_ch==1)
-					{
-						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
-					}
-				}
-				else if(dataA[mxposD-1]<dataA[mxposD+1])
-				{
-					if(kierunek==1) {
-						dir_ch=1;
-						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
-					}
-					else {
-						dir_ch=0;
-						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
-					}
-
-					kierunek=2;
-
-					if(dir_ch==1)
-					{
-						fprintf(dir_file, "%d  %d\n", i, kierunek+600);
-					}
-				}
-
-
+				dir_fl = find_direction(dataD, dataA, mxposD, dir_file, i, dir_fl);
 			}
 		}
 		else
@@ -313,7 +335,7 @@ int main(int argc, char* argv[]) {
 	}
 	fclose(max_file);
 
-	fprintf(dir_file, "%d  %d\n", number_of_lines, kierunek+600);
+	//	fprintf(dir_file, "%d  %d\n", number_of_lines, kierunek+600);
 
 	struct wyniki *otrzymane_wyniki_wsk, otrzymane_wyniki;
 
@@ -330,7 +352,7 @@ int main(int argc, char* argv[]) {
 
 	for(i=0; i<number_of_lines; i++)
 	{
-		fprintf(f, "%d\n",dataD[i]);
+		fprintf(f, "%d\n", dataD[i]);
 	}
 
 	fclose(f);
@@ -340,7 +362,7 @@ int main(int argc, char* argv[]) {
 	if(a>0)
 	{
 		char * commandsForGnuplot[] = {"set title \"Wykres z zaznaczonymi maksimami\"", "plot 'dataD.txt' with lines title 'wykres sygnalu', 'max_tab.txt' with points title 'maksima', 'dir_tab.txt' with histeps title 'linia kierunku'"};
-   		FILE * temp = fopen("dataD.txt", "w");																
+  	FILE * temp = fopen("dataD.txt","w");																
     	kontrola_pliku(temp);
 
     	FILE * gnuplotPipe = popen ("gnuplot -persistent", "w");
@@ -348,7 +370,7 @@ int main(int argc, char* argv[]) {
 
     	for (i=0; i < number_of_lines; i++)
     	{
-   		 	fprintf(temp, "%d \n", dataD[i]);
+   		 fprintf(temp, "%d \n", dataD[i]);
     	}
 
     	for (i=0; i < NUM_COMMANDS; i++)
@@ -357,10 +379,10 @@ int main(int argc, char* argv[]) {
     	}
 
     	free(dataD);
-    }
-    if(a==0)
-    {
-    	GtkApplication *app;
+	}
+	if(a==0)
+	{
+    		GtkApplication *app;
  		int argc2=0;
 		app = gtk_application_new (NULL, G_APPLICATION_FLAGS_NONE);
 		g_signal_connect (app, "activate", G_CALLBACK (activate), otrzymane_wyniki_wsk);
