@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdio>
-#include <string.h>
+#include <string>
 #include <cmath>
 
 using namespace std;
@@ -19,7 +19,6 @@ class Macierz {
 	void display();
 	~Macierz()
 	{
-		cout<<"Adres: "<<(void*)matrix<<endl;
 		delete []matrix;
 	}
 
@@ -82,7 +81,7 @@ class Macierz {
 				iloraz.matrix[i*m+j] = matrix[i*m+j] / liczba;
 		return iloraz;
 	}
-/*
+
 	int operator==(Macierz B)
 	{
 		for(int i=0; i<n; i++)
@@ -91,7 +90,17 @@ class Macierz {
 					return -1;
 		return 1;
 		
-	}*/
+	}
+
+	Macierz operator%(Macierz B) //mnożenie macierz x macierz
+	{
+		if(n!=B.m)
+		{
+			std::string wyjatek = "dzielenie przez zero!\n";
+			throw wyjatek;
+		}
+		
+	}
 };
 
 Macierz::Macierz(int N, int M)
@@ -130,14 +139,6 @@ void Macierz::display()
 
 int main()
 {
-	{
-		Macierz m1(3,3), m2(3,3), m3(3,3);
-		Macierz mw(3,3);
-		m1.wypelnij();
-		m2.wypelnij();
-		mw=m1+m2;
-	}
-	
 	int n, m;
 	float c;
 	printf("podaj wymiary nxm\n");
